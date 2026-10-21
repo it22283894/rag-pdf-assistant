@@ -10,6 +10,7 @@ This application converts static PDF documents—such as lecture slides, researc
 [ Upload PDF ] ──► [ PyPDF Loader ] ──► [ Recursive Text Splitter ] ──► [ Nomic Embeddings ] ──► [ Chroma Vector DB ]
 │
 [ Local Response ] ◄── [ Ollama (Llama 3) ] ◄── [ Grounded Prompt + Top-K Chunks ] ◄──────────────┘
+
 **Document Ingestion:** Uploaded PDFs are parsed into text and split into overlapping text chunks (`chunk_size=1000`, `chunk_overlap=200`) to preserve sentence boundaries and semantic context.
 2. **Indexing:** Text chunks are transformed into dense vector embeddings using `nomic-embed-text` and indexed inside a local `ChromaDB` vector store.
 3. **Retrieval:** User queries are embedded using the same vector model and matched against stored chunk vectors via similarity search to fetch the top $K=5$ relevant snippets.
